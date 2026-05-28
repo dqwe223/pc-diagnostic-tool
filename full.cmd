@@ -54,41 +54,30 @@ goto menu
 cls
 color 0B
 
-echo =========================================================================================================
-echo                                FULL PC DIAGNOSTIC SUITE
-echo =========================================================================================================
+echo =============================================================================
+echo                          FULL PC DIAGNOSTIC SUITE
+echo =============================================================================
 echo.
-echo   ========================= CPU =========================
-echo   [01] CPU Information
-echo   [02] Live CPU Usage
-echo   [03] Running Processes
-echo   [04] Power Plan Info
+echo   ========= WINDOWS ==========          =========== RAM =============
+echo   [01] ACTIVATION Status                [05] RAM Information
+echo   [02] CFC Scan                         [06] Memory Usage
+echo   [03] CFC Advance                      [07] Virtual Memory Status
+echo   [04] Power Plan Info                  [08] Clear RAM Cache (Basic)
 echo.
-echo   ========================= RAM =========================
-echo   [05] RAM Information
-echo   [06] Memory Usage
-echo   [07] Virtual Memory Status
-echo   [08] Clear RAM Cache (Basic)
-echo.
-echo   ========================= DISK =========================
-echo   [09] Disk Usage
-echo   [10] Check Disk Errors
-echo   [11] Disk Cleanup
-echo   [12] System File Scan (SFC)
-echo.
-echo   ========================= NETWORK =========================
-echo   [13] IP Configuration
-echo   [14] Internet Test (Ping)
-echo   [15] DNS Flush
-echo   [16] Network Repair Full
-echo   [17] WiFi Profiles
-echo.
-echo   ========================= SYSTEM =========================
-echo   [18] System Info
+echo   ========== DISK ============          ========= NETWORK ===========
+echo   [09] Disk Usage                       [13] IP Configuration
+echo   [10] Check Disk Errors                [14] Internet Test (Ping)
+echo   [11] Disk Cleanup                     [15] DNS Flush
+echo   [12] System File Scan (SFC)           [16] Network Repair Full 
+echo                                         [17] Network Repair Full 
+echo   ========= SYSTEM ===========
+echo   [18] Lap Battry Report
 echo   [19] Performance Monitor
 echo   [20] Exit
 echo.
-echo =========================================================================================================
+echo =============================================================================
+echo                    https://irukamihishan.netlify.app/
+echo =============================================================================
 echo.
 set /p choice=ROOT@PC-DIAG: 
 
@@ -141,26 +130,26 @@ goto menu
 :cpuinfo
 cls
 color 0E
-echo ================= CPU INFORMATION =================
-wmic cpu get Name,NumberOfCores,NumberOfLogicalProcessors,MaxClockSpeed,LoadPercentage
+echo ================= ACTIVATION Status =================
+slmgr /dli
 pause
 goto menu
 
 :cpuusage
 cls
 color 0A
-echo ================= LIVE CPU USAGE =================
+echo ================= CFC Scan =================
 echo Press CTRL + C to stop
-:cpuloop
-wmic cpu get loadpercentage
-timeout /t 2 >nul
-goto cpuloop
+sfc /scannow
+pause
+goto menu
 
 :processes
 cls
 color 0D
-echo ================= RUNNING PROCESSES =================
-tasklist
+echo ================= Advance CFC =================
+echo Press CTRL + C to stop
+dism /online /cleanup-image /restorehealth
 pause
 goto menu
 
@@ -289,8 +278,8 @@ goto menu
 :wifi
 cls
 color 0D
-echo ================= WIFI PROFILES =================
-netsh wlan show profiles
+echo ================= SPEED TEST =================
+powershell "Get-NetAdapter | Select Name, LinkSpeed"
 pause
 goto menu
 
@@ -300,8 +289,8 @@ goto menu
 :sys
 cls
 color 0A
-echo ================= SYSTEM INFO =================
-systeminfo
+echo ================= Lap Battry Report =================
+Get-CimInstance Win32_Battery
 pause
 goto menu
 
