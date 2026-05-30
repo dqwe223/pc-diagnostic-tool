@@ -143,14 +143,7 @@ PLEASE RUN THIS TOOL AS ADMINISTRATOR
 
 ```text
 Run as Administrator
-```
 
----
-
-### Method 2: Clone Repository
-
-```bash
-git clone https://github.com/your-username/Ultra-PC-Diagnostic-Suite.git
 ```
 
 Open the project folder and run:
@@ -280,36 +273,6 @@ Useful for resolving:
 
 * Windows 10
 * Windows 11
-
----
-
-## 👨‍💻 Author
-
-Iruka Mihishan
-
-* Full-Stack Developer
-* IT Support Specialist
-* BSc (Hons) Information Technology Undergraduate
-
----
-
-## 📜 License
-
-This project is released under the MIT License.
-
----
-
-## ⭐ Support
-
-If you find this project useful:
-
-⭐ Star the repository
-
-🍴 Fork the project
-
-🐛 Report issues
-
-🚀 Contribute improvements
 
 ---
 
